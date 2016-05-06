@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <ImageButton
+        android:id="@+id/NewGameButton"
+        android:layout_centerInParent="true"
+        android:layout_width="124dp"
+        android:layout_height="124dp"
+        android:background="@null"
+        android:src="@drawable/ic_refresh_black_24dp"
+        android:scaleType="fitCenter"/>
+    <TextView
+        android:textColor="#FFFF"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/NewGameButton"
+        android:id="@+id/currentScoreTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Score: "/>
+    <TextView
+        android:textColor="#FFFF"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/currentScoreTV"
+        android:id="@+id/highscoreTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Highscore: "/>
+
+</LinearLayout>

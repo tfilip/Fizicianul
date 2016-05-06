@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Fizicianu</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="you_are_signed_in">You are signed in with Google.</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="click_me">Click me!</string>
+    <string name="app_id">1023668631140</string>
+    <string name="signin_other_error">There was an issue with sign in. Please try again later.</string>
+    <string name="sp">fizicianusp</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_first_fragment"
+            android:title="Joaca"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_second_fragment"
+            android:title="Clasament" />
+        <item
+            android:id="@+id/nav_third_fragment"
+            android:title="Chat" />
+        <item
+            android:id="@+id/nav_fourth_fragment"
+            android:title="Lectii" />
+        <item
+            android:id="@+id/nav_fifth_fragment"
+            android:title="Ajutor" />
+        <item
+            android:id="@+id/nav_sixth_fragment"
+            android:title="Achievements" />
+
+    </group>
+</menu>
