@@ -1,10 +1,7 @@
 package com.afa.fizicianu;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.net.Uri;
-import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,30 +16,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.afa.fizicianu.database.SQLController;
-import com.afa.fizicianu.fragments.ChatFragment;
 import com.afa.fizicianu.fragments.GameFragment;
-import com.afa.fizicianu.fragments.LeaderboardFragment;
-import com.afa.fizicianu.fragments.LectiiFragment;
-import com.afa.fizicianu.fragments.SettingsFragment;
-import com.google.android.gms.*;
+
+import io.smooch.core.User;
 import io.smooch.ui.ConversationActivity;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
-import com.google.android.gms.games.Player;
-import com.google.android.gms.games.PlayerEntity;
-import com.google.android.gms.plus.Plus;
 import com.google.example.games.basegameutils.BaseGameUtils;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
@@ -120,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             editor.commit();
             logintimes=0;
         }
-        //Check for achivments
+        //Check for achievments (Daily login)
         if(mGoogleApiClient.isConnected()) {
             switch (logintimes) {
                 case 3:
@@ -134,6 +119,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     break;
             }
         }
+
+
+
     }
 
     @Override
@@ -184,12 +172,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 else {
                     Toast.makeText(this,"You need to be connected to your Google account",Toast.LENGTH_SHORT).show();
                 }
-                break;
-            case R.id.nav_third_fragment:
-                getFragmentManager().beginTransaction().replace(R.id.contentFrame, new ChatFragment()).commit();
-                break;
-            case R.id.nav_fourth_fragment:
-                getFragmentManager().beginTransaction().replace(R.id.contentFrame, new LectiiFragment()).commit();
                 break;
             case R.id.nav_fifth_fragment:
                 ConversationActivity.show(this);
@@ -245,7 +227,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         Log.e("test", Games.Players.getCurrentPlayer(mGoogleApiClient).getHiResImageUrl());
         String url = Games.Players.getCurrentPlayer(mGoogleApiClient).getHiResImageUrl();
         Picasso.with(this).load(url).into((ImageView) header.findViewById(R.id.profile_image));
-
+        //Name for Smooch
+        User.getCurrentUser().setFirstName(Games.Players.getCurrentPlayer(mGoogleApiClient).getDisplayName());
     }
 
     @Override
