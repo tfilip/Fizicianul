@@ -80,26 +80,26 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/questionTV">
             <Button
-                style="@style/Widget.AppCompat.Button.Colored"
+
                 android:id="@+id/rasp1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TEST"
                 />
             <Button
-                style="@style/Widget.AppCompat.Button.Colored"
+
                 android:id="@+id/rasp2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TEST"/>
             <Button
-                style="@style/Widget.AppCompat.Button.Colored"
+
                 android:id="@+id/rasp3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TEST"/>
             <Button
-                style="@style/Widget.AppCompat.Button.Colored"
+
                 android:id="@+id/rasp4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -7,18 +7,7 @@
         android:protectionLevel="signature"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="com.afa.fizicianu.permission.C2D_MESSAGE"/>
-    <receiver
-        android:name="com.google.android.gms.gcm.GcmReceiver"
-        android:exported="true"
-        android:permission="com.google.android.c2dm.permission.SEND">
-        <intent-filter>
-            <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-            <category android:name="com.afa.fizicianu"/>
-        </intent-filter>
-        <intent-filter>
-            <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
-        </intent-filter>
-    </receiver>
+
 
     <application
         android:name=".App"
@@ -29,7 +18,8 @@
         android:theme="@style/AppTheme">
         <meta-data android:name="com.google.android.gms.games.APP_ID"
             android:value="@string/app_id" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,6 +29,20 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="2fb7785a30ada122d39d993b516b45be31cf8cda" />
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <category android:name="com.afa.fizicianu"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 

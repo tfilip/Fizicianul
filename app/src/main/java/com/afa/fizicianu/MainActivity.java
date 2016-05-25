@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void selectDrawerItem(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_first_fragment:
-                getFragmentManager().beginTransaction().replace(R.id.contentFrame, new GameFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.contentFrame, new GameFragment()).commit();
                 break;
             case R.id.nav_second_fragment:
                 if(mGoogleApiClient.isConnected()){

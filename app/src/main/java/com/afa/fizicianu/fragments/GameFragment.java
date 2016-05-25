@@ -1,7 +1,7 @@
 package com.afa.fizicianu.fragments;
 
 import android.app.Dialog;
-import android.app.Fragment;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -96,11 +97,11 @@ public class GameFragment extends Fragment implements View.OnClickListener {
 
         mGoogleApiClient = ((MainActivity)getActivity()).getmGoogleApiClient();
         timerTV = (TextView) getView().findViewById(R.id.timerTV);
-        cntdwon = new CountDownTimer(14000,1000){
+        cntdwon = new CountDownTimer(20000,1000){
             @Override
             public void onTick(long millisUntilFinished) {
                 timerTV.setText(String.valueOf(millisUntilFinished/1000));
-                if(millisUntilFinished/1000>10) {
+                if(millisUntilFinished/1000>15) {
                     view.findViewById(R.id.sv).setVisibility(View.GONE);
                     view.findViewById(R.id.questionTV).setVisibility(View.VISIBLE);
                     view.findViewById(R.id.timerTV).setVisibility(View.INVISIBLE);
@@ -132,17 +133,20 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         if(App.isActivityVisible())
         cntdwon.start();
         //Achivement
-        if(mLives==3){
-            switch (mScore){
-                case 5:Games.Achievements.unlock((mGoogleApiClient),"CgkI5Oyeu-UdEAIQAw");
-                    Log.v("ts","5");
-                    break;
-                case 10:
-                    Games.Achievements.unlock((mGoogleApiClient),"CgkI5Oyeu-UdEAIQBA");
-                    break;
-                case 15:
-                    Games.Achievements.unlock((mGoogleApiClient),"CgkI5Oyeu-UdEAIQBQ");
+        if(mGoogleApiClient.isConnected()) {
+            if (mLives == 3) {
+                switch (mScore) {
+                    case 5:
+                        Games.Achievements.unlock((mGoogleApiClient), "CgkI5Oyeu-UdEAIQAw");
+                        Log.v("ts", "5");
+                        break;
+                    case 10:
+                        Games.Achievements.unlock((mGoogleApiClient), "CgkI5Oyeu-UdEAIQBA");
+                        break;
+                    case 15:
+                        Games.Achievements.unlock((mGoogleApiClient), "CgkI5Oyeu-UdEAIQBQ");
 
+                }
             }
         }
 
