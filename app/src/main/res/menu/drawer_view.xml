@@ -2,9 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="none">
         <item
-            android:id="@+id/nav_first_fragment"
-            android:title="Joaca"
+            android:id="@+id/nav_home"
+            android:title="Acasa"
             android:checked="true"/>
+        <item
+            android:id="@+id/nav_first_fragment"
+            android:title="Joaca" />
         <item
             android:id="@+id/nav_second_fragment"
             android:title="Clasament" />

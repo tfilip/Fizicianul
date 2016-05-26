@@ -2,6 +2,7 @@ package com.afa.fizicianu.fragments;
 
 import android.app.Dialog;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +13,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -161,10 +161,6 @@ public class GameFragment extends Fragment implements View.OnClickListener {
 
         Log.v("Help",String.valueOf(mQuestions.get(pos).getRc()));
 
-        //Timer
-
-
-
 
     }
 
@@ -242,10 +238,10 @@ public class GameFragment extends Fragment implements View.OnClickListener {
             e.commit();
             ((MainActivity)getActivity()).updateHeader();
         }
+
         if(((MainActivity)getActivity()).getmGoogleApiClient().isConnected())
         Games.Leaderboards.submitScore(((MainActivity)getActivity()).getmGoogleApiClient(),"CgkI5Oyeu-UdEAIQAg",mScore);
-        int highscore = prefs.getInt("PersonalScore",23);
-        Log.v("TEST",String.valueOf(highscore));
+
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.final_dialog_layout);
         TextView currentScore = (TextView) dialog.findViewById(R.id.currentScoreTV);
@@ -257,13 +253,6 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = getActivity().getIntent();
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                getActivity().overridePendingTransition(0,0);
-                getActivity().finish();
-                getActivity().overridePendingTransition(0,0);
-                startActivity(intent);*/
                 reset();
                 dialog.dismiss();
             }
@@ -272,7 +261,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                ((MainActivity)getActivity()).selectDrawerItem(((MainActivity)getActivity()).nvDrawer.getMenu().getItem(1));
+                ((MainActivity)getActivity()).selectDrawerItem(((MainActivity)getActivity()).nvDrawer.getMenu().getItem(0));
                 reset();
             }
         });

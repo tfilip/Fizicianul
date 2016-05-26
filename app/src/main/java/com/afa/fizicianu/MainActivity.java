@@ -1,5 +1,6 @@
 package com.afa.fizicianu;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
@@ -21,6 +22,7 @@ import com.afa.fizicianu.fragments.GameFragment;
 import io.smooch.core.User;
 import io.smooch.ui.ConversationActivity;
 
+import com.afa.fizicianu.fragments.NewsFragment;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         //Replace ActionBar with toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Joaca");
+        setTitle("Acasa");
         //Bindings
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         nvDrawer = (NavigationView) findViewById(R.id.hamburgerMenu);
@@ -153,15 +155,22 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     }
                 }
         );
-        nvDrawer.getMenu().getItem(0).setChecked(true);
-        selectDrawerItem(nvDrawer.getMenu().getItem(0));
+        nvDrawer.getMenu().findItem(R.id.nav_home).setChecked(true);
+        selectDrawerItem(nvDrawer.getMenu().findItem(R.id.nav_home));
     }
 
     //Behaviour on selected drawer item
     public void selectDrawerItem(MenuItem item) {
+
         switch (item.getItemId()) {
+            case R.id.nav_home:
+                getFragmentManager().beginTransaction().replace(R.id.contentFrame,new NewsFragment()).commit();
+                Log.v("TEST","ACASA");
+                setTitle("Acasa");
+                break;
             case R.id.nav_first_fragment:
-                getSupportFragmentManager().beginTransaction().replace(R.id.contentFrame, new GameFragment()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.contentFrame, new GameFragment()).commit();
+                setTitle("Joaca");
                 break;
             case R.id.nav_second_fragment:
                 if(mGoogleApiClient.isConnected()){
@@ -216,17 +225,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnected(Bundle bundle) {
-        //Toast.makeText(this,"Succesfuly logged in",Toast.LENGTH_LONG).show();
+
         header.findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+
         SharedPreferences preferences = getSharedPreferences(getString(R.string.sp),MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("USERNAME",Games.Players.getCurrentPlayer(mGoogleApiClient).getDisplayName());
         editor.commit();
+
         App app = (App) getApplication();
         app.setUsername(Games.Players.getCurrentPlayer(mGoogleApiClient).getDisplayName());
         Log.e("test", Games.Players.getCurrentPlayer(mGoogleApiClient).getHiResImageUrl());
         String url = Games.Players.getCurrentPlayer(mGoogleApiClient).getHiResImageUrl();
         Picasso.with(this).load(url).into((ImageView) header.findViewById(R.id.profile_image));
+        Games.Leaderboards.submitScore(mGoogleApiClient,"CgkI5Oyeu-UdEAIQAg",getSharedPreferences(getString(R.string.sp), Context.MODE_PRIVATE).getInt("PersonalScore", 0));
+
         //Name for Smooch
         User.getCurrentUser().setFirstName(Games.Players.getCurrentPlayer(mGoogleApiClient).getDisplayName());
     }
@@ -278,7 +291,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     public void updateHeader(){
-
         int hs = getSharedPreferences(getString(R.string.sp),MODE_PRIVATE).getInt("PersonalScore",0);
         hsv.setText("Highscore: "+String.valueOf(hs));
     }
