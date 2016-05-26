@@ -10,7 +10,8 @@
         android:layout_gravity="center"
         android:layout_width="345dp"
         android:layout_height="300dp"
-        card_view:cardCornerRadius="4dp">
+        card_view:cardCornerRadius="4dp"
+        android:id="@+id/cardV">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -32,8 +33,8 @@
             android:background="#8888"
             android:ellipsize="end"
             android:textColor="@color/white"
-            android:text="LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM LOREM a"/>
-
+            android:text="Loading"
+></TextView>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

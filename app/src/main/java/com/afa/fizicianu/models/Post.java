@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Post {
 
-    @SerializedName("permalink")
+    @SerializedName("url")
     private String permalink;
     @SerializedName("thumbnail")
     private String thumbnail;
