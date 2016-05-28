@@ -60,6 +60,7 @@ public class NewsFragment extends Fragment {
         iThumbnail = (ImageView) view.findViewById(R.id.thumbnail);
         textView = (TextView) view.findViewById(R.id.title);
         Picasso.with(getActivity()).load(R.drawable.progress_image).into(iThumbnail);
+
         //Downloading posts from Reddit
         OkHttpClient client = new OkHttpClient();
         mHandler = new Handler(Looper.getMainLooper());
@@ -105,6 +106,7 @@ public class NewsFragment extends Fragment {
 
     }
 
+    //Verificare net pornit
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);

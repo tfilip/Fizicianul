@@ -73,6 +73,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         mLives = 3;
         mScore = 0;
 
+        //Preluare intrebari din baza de date
         sqlController = new SQLController(getActivity());
         sqlController.open();
         mQuestions = sqlController.getQuestions();
@@ -97,6 +98,8 @@ public class GameFragment extends Fragment implements View.OnClickListener {
 
         mGoogleApiClient = ((MainActivity)getActivity()).getmGoogleApiClient();
         timerTV = (TextView) getView().findViewById(R.id.timerTV);
+
+        //Cronometru
         cntdwon = new CountDownTimer(20000,1000){
             @Override
             public void onTick(long millisUntilFinished) {
@@ -132,7 +135,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         cntdwon.cancel();
         if(App.isActivityVisible())
         cntdwon.start();
-        //Achivement
+        //Achivement raspunsuri
         if(mGoogleApiClient.isConnected()) {
             if (mLives == 3) {
                 switch (mScore) {
@@ -229,6 +232,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         cntdwon.cancel();
 
 
+        //Highscore
         SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.sp), Context.MODE_PRIVATE);
 
         int scor = prefs.getInt("PersonalScore",0);
@@ -242,6 +246,7 @@ public class GameFragment extends Fragment implements View.OnClickListener {
         if(((MainActivity)getActivity()).getmGoogleApiClient().isConnected())
         Games.Leaderboards.submitScore(((MainActivity)getActivity()).getmGoogleApiClient(),"CgkI5Oyeu-UdEAIQAg",mScore);
 
+        //Final
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.final_dialog_layout);
         TextView currentScore = (TextView) dialog.findViewById(R.id.currentScoreTV);

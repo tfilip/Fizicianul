@@ -73,13 +73,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         drawerToggle = setupDrawerToggle();
 
 
-
+        //Conectarea la Google Games
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
 
+        //Updatare header
         header = nvDrawer.getHeaderView(0);
         header.findViewById(R.id.sign_in_button).setOnClickListener(this);
         TextView utv = (TextView) header.findViewById(R.id.username);
@@ -223,6 +224,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
 
+    //Cand s-a conectat la Google Games
     @Override
     public void onConnected(Bundle bundle) {
 
@@ -249,6 +251,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mGoogleApiClient.connect();
     }
 
+    //In caz ca nu se conecteaza
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         if(mResolvingConnectionFailure){
