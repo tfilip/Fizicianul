@@ -241,7 +241,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         String url = Games.Players.getCurrentPlayer(mGoogleApiClient).getHiResImageUrl();
         Picasso.with(this).load(url).into((ImageView) header.findViewById(R.id.profile_image));
         Games.Leaderboards.submitScore(mGoogleApiClient,"CgkI5Oyeu-UdEAIQAg",getSharedPreferences(getString(R.string.sp), Context.MODE_PRIVATE).getInt("PersonalScore", 0));
-
+        TextView utv = (TextView) header.findViewById(R.id.username);
+        utv.setText(app.getUsername());
         //Name for Smooch
         User.getCurrentUser().setFirstName(Games.Players.getCurrentPlayer(mGoogleApiClient).getDisplayName());
     }

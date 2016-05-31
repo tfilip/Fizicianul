@@ -13,6 +13,7 @@ public class DBHelper extends SQLiteAssetHelper {
 
     public DBHelper(Context c){
         super(c,DATABASE_NAME,null,DATABASE_VERSION);
+        setForcedUpgrade();
     }
 
     public static synchronized DBHelper getInstantce(Context c){
